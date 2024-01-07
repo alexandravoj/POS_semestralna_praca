@@ -98,22 +98,6 @@ void urobKrok(int pocetRiadkov, int pocetStlpcov, const std::vector<BUNKA>* pole
             const BUNKA& currentCell = (*pole)[(y-1) * pocetStlpcov + (x-1)];
             BUNKA& newCell = (*pole2)[(y-1) * pocetStlpcov + (x-1)];
             newCell = currentCell;
-            /*if ((zivychSusedov == 1 || zivychSusedov == 0) && currentCell.ziva) {
-                newCell.ziva = false;
-                newCell.znak = '-';
-                pocetZmien++;
-            } else if (zivychSusedov >= 4 && currentCell.ziva) {
-                newCell.ziva = false;
-                newCell.znak = '-';
-                pocetZmien++;
-            } else if ((zivychSusedov == 2 || zivychSusedov == 3) && currentCell.ziva) {
-                newCell.ziva = true;
-                newCell.znak = '@';
-            } else if (zivychSusedov == 3 && !currentCell.ziva) {
-                newCell.ziva = true;
-                newCell.znak = '@';
-                pocetZmien++;
-            }*/
 
             if ((zivychSusedov <= 1 || zivychSusedov >= 4) && currentCell.ziva) {
                 newCell.ziva = false;
