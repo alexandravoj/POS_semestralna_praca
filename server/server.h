@@ -14,9 +14,9 @@ typedef struct serverData {
 } SERVER_DATA;
 
 
-void server_save_load_init(SERVER_DATA* data, int* niecoOtvorene, int* newsockfd);
-void server_save_load_destroy(SERVER_DATA* data);
+void serverData_init(SERVER_DATA* data, int* niecoOtvorene, int* newsockfd);
+void serverData_destroy(SERVER_DATA* data);
 
-void* serverSaveLoadThread(void* data);
+void* serverSpracuj(void* data);
 
 #endif //SERVER_C_SERVER_H

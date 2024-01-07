@@ -10,7 +10,7 @@
 #include <pthread.h>
 #include <unistd.h>
 
-void server_save_load_init(SERVER_DATA* data, int* niecoOtvorene, int* newsockfd) {
+void serverData_init(SERVER_DATA* data, int* niecoOtvorene, int* newsockfd) {
     data->niecoOtvorene = niecoOtvorene;
     data->newsockfd = newsockfd;
     data->mutex = (pthread_mutex_t*)malloc(sizeof(pthread_mutex_t));
@@ -19,7 +19,7 @@ void server_save_load_init(SERVER_DATA* data, int* niecoOtvorene, int* newsockfd
     pthread_cond_init(data->isNotOpened, NULL);
 };
 
-void server_save_load_destroy(SERVER_DATA* data) {
+void serverData_destroy(SERVER_DATA* data) {
     free(data->niecoOtvorene);
     data->niecoOtvorene = NULL;
     free(data->newsockfd);
@@ -32,7 +32,7 @@ void server_save_load_destroy(SERVER_DATA* data) {
     data->isNotOpened = NULL;
 };
 
-void* serverSaveLoadThread(void* data) {
+void* serverSpracuj(void* data) {
     SERVER_DATA* s_data = (SERVER_DATA*)data;
     int newsockfd;
     pthread_mutex_lock(s_data->mutex);

@@ -39,21 +39,21 @@ int main_server(int argc, char* argv[]) {
     listen(sockfd, CONNECTED_MAX_NO);
     cli_len = sizeof(cli_addr);
 
-    pthread_t threadsSaveLoad[CONNECTED_MAX_NO];
-    int connectedPosition = 0;
-    SERVER_DATA serverSaveLoad;
+    pthread_t threads[CONNECTED_MAX_NO];
+    int pocetPripojenych = 0;
+    SERVER_DATA serverData;
 
     while (1) {
-        if (connectedPosition >= CONNECTED_MAX_NO) {
+        if (pocetPripojenych >= CONNECTED_MAX_NO) {
             printf("Server zaneprázdnený! Prosím, vydržte...\n");
-            for (int i = 0; i < connectedPosition; ++i) {
-                pthread_join(threadsSaveLoad[i], NULL);
+            for (int i = 0; i < pocetPripojenych; ++i) {
+                pthread_join(threads[i], NULL);
 
             }
-            connectedPosition = 0;
+            pocetPripojenych = 0;
         }
-        for (int i = 0; i < connectedPosition; ++i) {
-            pthread_join(threadsSaveLoad[i], NULL);
+        for (int i = 0; i < pocetPripojenych; ++i) {
+            pthread_join(threads[i], NULL);
 
         }
         int niecoOtvorene = 0;
@@ -61,11 +61,11 @@ int main_server(int argc, char* argv[]) {
         newsockfd = accept(sockfd, (struct sockaddr*)&cli_addr,
                            &cli_len);
 
-        server_save_load_init(&serverSaveLoad, &niecoOtvorene, &newsockfd);
+        serverData_init(&serverData, &niecoOtvorene, &newsockfd);
 
-        pthread_create(&threadsSaveLoad[connectedPosition], NULL, &serverSaveLoadThread, &serverSaveLoad);
-        ++connectedPosition;
+        pthread_create(&threads[pocetPripojenych], NULL, &serverSpracuj, &serverData);
+        ++pocetPripojenych;
     }
-    server_save_load_destroy(&serverSaveLoad);
+    serverData_destroy(&serverData);
 }
 
