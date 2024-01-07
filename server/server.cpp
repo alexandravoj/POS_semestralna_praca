@@ -10,7 +10,7 @@
 #include <pthread.h>
 #include <unistd.h>
 
-void serverData_init(SERVER_DATA* data, int* niecoOtvorene, int* newsockfd) {
+void serverData_init (SERVER_DATA* data, int* niecoOtvorene, int* newsockfd) {
     data->niecoOtvorene = niecoOtvorene;
     data->newsockfd = newsockfd;
     data->mutex = (pthread_mutex_t*)malloc(sizeof(pthread_mutex_t));
