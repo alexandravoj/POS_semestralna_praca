@@ -67,10 +67,6 @@ int main_client(int argc, char* argv[]) {
         pocetRiadkov = nacitajVolbu();
         std::cout << "Zadaj pocet stlpcov: \n";
         pocetStlpcov = nacitajVolbu();
-        /*if (pocetRiadkov == 1 && pocetStlpcov == 1) {
-            std::cout << "Svet musí byt vacsi ako 1x1\n";
-            return 1;
-        }*/
     }
 
     std::vector<BUNKA>* pole = new std::vector<BUNKA>(pocetRiadkov * pocetStlpcov);
@@ -100,9 +96,9 @@ int main_client(int argc, char* argv[]) {
         pocetStlpcov = getNacitaneStlpce();
     }
 
-    if (volba != 5) {
-        vykresli(pocetRiadkov, pocetStlpcov, pole);
-    }
+
+    vykresli(pocetRiadkov, pocetStlpcov, pole);
+
 
 
     //SIMULACIA

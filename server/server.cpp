@@ -70,7 +70,7 @@ void* serverSpracuj(void* data) {
     }
     filename[i-5] = '\0';
     printf("Názov súboru: '%s' '%s'\n", filename, buffer[0] == 'u' ? "uloz" : "nacitaj");
-    printf("Socket %d: \n", newsockfd);
+    printf("Socket: %d \n", newsockfd);
 
 
     pthread_mutex_lock(s_data->mutex);
@@ -86,7 +86,7 @@ void* serverSpracuj(void* data) {
         fprintf(out, "%s", buffer);
         fclose(out);
         bzero(buffer, 1000);
-        const char* msg = "Súbor prijatý";
+        const char* msg = "Server: Súbor prijatý";
         n = write(newsockfd, msg, strlen(msg)+1);
 
     } else if (buffer[0] == 'n'){

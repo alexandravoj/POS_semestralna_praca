@@ -60,7 +60,7 @@ int ulozNaServer(int sockfd, int& pocetRiadkov, int& pocetStlpcov, std::vector<B
     strcat(buffer, str);
     sprintf(str, "%d;", pocetStlpcov);
     strcat(buffer, str);
-    printf("%s\n", buffer);
+    //printf("%s\n", buffer);
     for (int y = 1; y <= pocetRiadkov; ++y) {
         for (int x = 1; x <= pocetStlpcov; ++x) {
             char temp[3] = {(*pole)[(y - 1) * pocetStlpcov + (x - 1)].znak,';','\0'};
@@ -69,7 +69,7 @@ int ulozNaServer(int sockfd, int& pocetRiadkov, int& pocetStlpcov, std::vector<B
 
     }
     strcat(buffer, "\n");
-    printf("%s\n", buffer);
+    //printf("%s\n", buffer);
 
     n = write(sockfd, buffer, strlen(buffer));
     if (n < 0) {
